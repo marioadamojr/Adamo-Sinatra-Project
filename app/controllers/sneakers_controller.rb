@@ -1,69 +1,69 @@
 class SneakersController < ApplicationController
-  get '/tweets' do #index
+  get '/sneakers' do #index
     if logged_in?
-      @tweets = Tweet.all
-      erb :"/tweets/index"
+      @sneakers = Sneaker.all
+      erb :"/sneakers/index"
     else
       redirect to "/login"
     end
   end
 
-  get '/tweets/new' do #new
+  get '/sneakers/new' do #new
     if logged_in?
-      erb :"/tweets/new"
+      erb :"/sneakers/new"
     else
       redirect to "/login"
     end
   end
 
-  post '/tweets' do
+  post '/sneakers' do
     if params[:content] != ""
-      @tweet = Tweet.new(params)
-      @tweet.user = current_user
-      @tweet.save
-      redirect to "/tweets/#{@tweet.id}"
+      @sneaker = Sneaker.new(params)
+      @sneaker.user = current_user
+      @sneaker.save
+      redirect to "/sneakers/#{@sneaker.id}"
     else
-      redirect to "/tweets/new"
+      redirect to "/sneakers/new"
     end
   end
 
-  get '/tweets/:id' do
+  get '/sneakers/:id' do
     if logged_in?
-      @tweet = Tweet.find_by_id(params[:id])
-      erb :"/tweets/show"
+      @sneaker = Sneaker.find_by_id(params[:id])
+      erb :"/sneakers/show"
     else
       redirect to "/login"
     end
   end
 
-  get '/tweets/:id/edit' do
+  get '/sneakers/:id/edit' do
     if logged_in?
-      @tweet = Tweet.find_by_id(params[:id])
-      if @tweet && @tweet.user == current_user
-        erb :"/tweets/edit"
+      @sneaker = Sneaker.find_by_id(params[:id])
+      if @sneaker && @sneaker.user == current_user
+        erb :"/sneakers/edit"
       end
     else
       redirect to "/login"
     end
   end
 
-  patch '/tweets/:id' do
-    @tweet = Tweet.find_by_id(params[:id])
+  patch '/sneakers/:id' do
+    @sneaker = Sneaker.find_by_id(params[:id])
     if params[:content] != ""
-      @tweet.update(content: params[:content])
-      redirect to "/tweets/#{@tweet.id}"
+      @sneaker.update(content: params[:content])
+      redirect to "/sneakers/#{@sneaker.id}"
     else
-      redirect to "/tweets/#{@tweet.id}/edit"
+      redirect to "/sneakers/#{@sneaker.id}/edit"
     end
   end
 
-  delete '/tweets/:id/delete' do
+  delete '/sneakers/:id/delete' do
     if logged_in?
-      @tweet = Tweet.find_by_id(params[:id])
-      if @tweet && @tweet.user == current_user
-        @tweet.delete
+      @sneaker = Sneaker.find_by_id(params[:id])
+      if @sneaker && @sneaker.user == current_user
+        @sneaker.delete
       end
-      redirect to "/tweets"
+      redirect to "/sneakers"
     else
       redirect to "/login"
     end
