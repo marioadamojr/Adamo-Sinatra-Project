@@ -1,8 +1,10 @@
 <h1>Sneaker's Show Page</h1>
 
-<%= @sneaker.content %>
-
+<%= @sneaker.context %>
+<br>
 <a href="/sneakers/<%= @sneaker.id %>/edit">Edit Sneaker</a>
+<br>
+<a href='/sneakers'>Return to Collection</a>
 
 <form method="post" action="/sneakers/<%= @sneaker.id %>/delete">
   <input type="hidden" name="_method" value="delete">

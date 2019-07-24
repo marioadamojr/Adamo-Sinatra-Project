@@ -2,8 +2,14 @@
 
 <h2>Welcome, <%= current_user.username %></h2>
 
+<a href='/sneakers/new'>Add a Sneaker</a>
+
 <ul>
   <% @sneakers.each do |sneaker| %>
-    <li><%= sneaker.content %></li>
+    <li><%= sneaker.context %></li>
   <% end %>
 </ul>
+
+<br>
+
+<a href='/logout'>Log Out</a>

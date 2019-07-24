@@ -49,8 +49,8 @@ class SneakersController < ApplicationController
 
   patch '/sneakers/:id' do
     @sneaker = Sneaker.find_by_id(params[:id])
-    if params[:content] != ""
-      @sneaker.update(content: params[:content])
+    if params[:context] != ""
+      @sneaker.update(context: params[:context])
       redirect to "/sneakers/#{@sneaker.id}"
     else
       redirect to "/sneakers/#{@sneaker.id}/edit"
