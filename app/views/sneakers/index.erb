@@ -1,0 +1,9 @@
+<h1>Sneaker Index</h1>
+
+<h2>Welcome, <%= current_user.username %></h2>
+
+<ul>
+  <% @sneakers.each do |sneaker| %>
+    <li><%= sneaker.content %></li>
+  <% end %>
+</ul>

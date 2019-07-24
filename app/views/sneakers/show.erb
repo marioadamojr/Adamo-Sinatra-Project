@@ -1,0 +1,10 @@
+<h1>Sneaker's Show Page</h1>
+
+<%= @sneaker.content %>
+
+<a href="/sneakers/<%= @sneaker.id %>/edit">Edit Sneaker</a>
+
+<form method="post" action="/sneakers/<%= @sneaker.id %>/delete">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Sneakers">
+</form>

@@ -1,0 +1,14 @@
+<% if logged_in? %>
+<%= @error %>
+  <form action='/sneakers' method="post">
+    Content:
+    <input type="text" name="content"><br>
+    Create Your Tweet:
+
+    <input type="submit" value="submit">
+
+  </form>
+
+  <% else %>
+      <h1> You Must Be Logged in to Change Sneakers </h1>
+  <% end %>

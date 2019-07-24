@@ -1,0 +1,8 @@
+<h1>User's Show Page</h1>
+
+<ul>
+<% @user.sneakers.each do |sneaker| %>
+  <li><%= sneaker.content %></li>
+<% end %>
+
+</ul>
