@@ -4,6 +4,17 @@
 
     <div class="content">
       <p>Welcome to my Sinatra App!</p>
+      <% if !logged_in? %>
+      <%= @error %>
+
+        <a href='/signup'>Create a User</a>
+        <a href='/login'>Log In</a>
+
+      <% else %>
+
+        <a href='/logout'>Log Out</a>
+
+      <% end %>
     </div>
 
     <div class="sidebar">
