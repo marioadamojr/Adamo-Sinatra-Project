@@ -6,7 +6,7 @@
 
 <ul>
   <% @sneakers.each do |sneaker| %>
-    <li><a href="/sneakers/#{sneaker.id}"><%= sneaker.context %></a></li>
+    <li><a href="/sneakers/<%= sneaker.id %>"><%= sneaker.context %></a></li>
   <% end %>
 </ul>
 
