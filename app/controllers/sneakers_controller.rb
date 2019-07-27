@@ -24,7 +24,7 @@ class SneakersController < ApplicationController
   end
 
   post '/sneakers' do
-    if params[:content] != ""
+    if params[:context] != ""
       @sneaker = Sneaker.new(params)
       @sneaker.user = current_user(session)
       @sneaker.save
@@ -46,7 +46,7 @@ class SneakersController < ApplicationController
   get '/sneakers/:id/edit' do
     if logged_in?
       @sneaker = Sneaker.find_by_id(params[:id])
-      if @sneaker && @sneaker.user == current_user
+      if @sneaker && @sneaker.user == current_user(session)
         erb :"/sneakers/edit"
       end
     else
@@ -67,7 +67,7 @@ class SneakersController < ApplicationController
   delete '/sneakers/:id/delete' do
     if logged_in?
       @sneaker = Sneaker.find_by_id(params[:id])
-      if @sneaker && @sneaker.user == current_user
+      if @sneaker && @sneaker.user == current_user(session)
         @sneaker.delete
       end
       redirect to "/sneakers"
