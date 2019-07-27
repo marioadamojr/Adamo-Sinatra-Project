@@ -1,7 +1,14 @@
 class SneakersController < ApplicationController
   get '/sneakers' do #index
     if logged_in?
-      @sneakers = Sneaker.all
+      @sneakers = []
+      @s = Sneaker.all
+      @s.each do |s|
+        if s.user_id == session[:user_id]
+          @sneakers << s
+        end
+      end
+      @sneakers
       erb :"/sneakers/index"
     else
       redirect to "/login"
@@ -19,7 +26,7 @@ class SneakersController < ApplicationController
   post '/sneakers' do
     if params[:content] != ""
       @sneaker = Sneaker.new(params)
-      @sneaker.user = current_user
+      @sneaker.user = current_user(session)
       @sneaker.save
       redirect to "/sneakers/#{@sneaker.id}"
     else

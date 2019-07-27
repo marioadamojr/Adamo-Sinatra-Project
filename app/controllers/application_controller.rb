@@ -15,11 +15,14 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!current_user
+      !!current_user(session)
     end
 
-    def current_user
-      @current_user ||= User.find_by(session[:user_id]) if session[:user_id]
+    def current_user(session)
+      @user = User.find_by_id(session[:user_id])
+      if @user.is_a?(User)
+        @user
+      end
     end
   end
 

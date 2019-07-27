@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    # binding.pry
     if !logged_in?
       erb :"/users/login"
     else
@@ -43,13 +42,10 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    if logged_in?
       session.destroy
+      current_user = nil
       redirect to "/"
-      binding.pry
-    else
-      redirect to "/"
-    end
   end
+
 
 end
